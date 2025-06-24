@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="বাংলাদেশী মুদ্রা ক্যালকুলেটর - সহজে আপনার নোট ও কয়েনের সংখ্যা গণনা করুন এবং মোট টাকার পরিমাণ জানুন।">
+    <meta name="keywords" content="বাংলাদেশী মুদ্রা, টাকা ক্যালকুলেটর, নোট গণনা, কয়েন গণনা, বাংলাদেশী মুদ্রা ক্যালকুলেটর, টাকা পরিমাপ">
+    <meta name="author" content="রিদওয়ান হোসেন">
+    <meta property="og:title" content="বাংলাদেশী মুদ্রা ক্যালকুলেটর">
+    <meta property="og:description" content="আপনার নোট ও কয়েনের সংখ্যা লিখুন এবং মোট টাকার পরিমাণ সহজেই জানুন">
+    <meta property="og:type" content="website">
+    <title>বাংলাদেশী মুদ্রা ক্যালকুলেটর | সহজে টাকা গণনা করুন</title>
+    <link rel="canonical" href="https://yourdomain.com/bd-currency-calculator">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Bengali', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .currency-container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 106, 78, 0.15);
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+        }
+        .header {
+            background: linear-gradient(135deg, #006A4E 0%, #004d38 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        .header p {
+            opacity: 0.85;
+            font-size: 1.1rem;
+        }
+        .currency-section {
+            padding: 25px;
+        }
+        .section-title {
+            color: #006A4E;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .currency-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+        .currency-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-color: #c8e6d9;
+        }
+        .currency-image {
+            width: 80px;
+            height: 60px;
+            border-radius: 5px;
+            object-fit: cover;
+            border: 1px solid #e0e0e0;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .coin-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .currency-details {
+            flex: 1;
+        }
+        .currency-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .currency-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            color: #006A4E;
+            transition: all 0.3s;
+        }
+        .currency-input:focus {
+            border-color: #006A4E;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 106, 78, 0.2);
+        }
+        .total-display {
+            background: linear-gradient(135deg, #006A4E 0%, #004d38 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .total-label {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        .total-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+        .btn-reset {
+            background: linear-gradient(135deg, #E11717 0%, #c20a0a 100%);
+            color: white;
+            box-shadow: 0 4px 10px rgba(225, 23, 23, 0.3);
+        }
+        .btn-reset:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(225, 23, 23, 0.4);
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.95rem;
+            border-top: 1px solid #eee;
+        }
+        .currency-value {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .currency-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            .total-amount {
+                font-size: 2.8rem;
+            }
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 15px;
+            }
+            .currency-section {
+                padding: 20px 15px;
+            }
+            .currency-grid {
+                grid-template-columns: 1fr;
+            }
+            .total-amount {
+                font-size: 2.3rem;
+            }
+        }
+        .animate-total {
+            animation: pulse 0.5s ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .watermark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.1;
+            font-size: 120px;
+            transform: rotate(-15deg);
+            color: #006A4E;
+            pointer-events: none;
+        }
+        .info-section {
+            background-color: #f0f9ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #006A4E;
+        }
+        .info-section h2 {
+            color: #006A4E;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        .info-section p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .feature-list {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .feature-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .feature-list li:before {
+            content: "✓";
+            color: #006A4E;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .new-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #e11717;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: pulseBadge 2s infinite;
+        }
+        @keyframes pulseBadge {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="currency-container">
+        <div class="watermark">৳</div>
+        
+        <header class="header">
+            <h1>বাংলাদেশী মুদ্রা ক্যালকুলেটর</h1>
+            <p>আপনার নোট ও কয়েনের সংখ্যা লিখুন এবং মোট পরিমাণ দেখুন</p>
+        </header>
+        
+        <main class="currency-section">
+            <section>
+                <h2 class="section-title">
+                    <i class="fas fa-money-bill-wave"></i>
+                    নোট সমূহ
+                </h2>
+                <div class="currency-grid">
+                    <!-- 1000 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk1000n1o.jpg" alt="1000 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">১,০০০ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳১০০০</div>
+                            <input type="number" class="currency-input" id="note-1000" value="0" min="0" aria-label="1000 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 500 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk500no6font.jpg" alt="500 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">৫০০ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳৫০০</div>
+                            <input type="number" class="currency-input" id="note-500" value="0" min="0" aria-label="500 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 200 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/200com_f.jpg" alt="200 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">২০০ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳২০০</div>
+                            <input type="number" class="currency-input" id="note-200" value="0" min="0" aria-label="200 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 100 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk100no8f.jpg" alt="100 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">১০০ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳১০০</div>
+                            <input type="number" class="currency-input" id="note-100" value="0" min="0" aria-label="100 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 50 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk50o7o.jpg" alt="50 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">৫০ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳৫০</div>
+                            <input type="number" class="currency-input" id="note-50" value="0" min="0" aria-label="50 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 20 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk20o_2.jpg" alt="20 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">২০ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳২০</div>
+                            <input type="number" class="currency-input" id="note-20" value="0" min="0" aria-label="20 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 10 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk10_03082012o.jpg" alt="10 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">১০ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳১০</div>
+                            <input type="number" class="currency-input" id="note-10" value="0" min="0" aria-label="10 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 5 Taka Note -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk5o5o.jpg" alt="5 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">৫ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳৫</div>
+                            <input type="number" class="currency-input" id="note-5" value="0" min="0" aria-label="5 Taka Note Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 2 Taka Note - NEW -->
+                    <div class="currency-item" style="position: relative;">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk2o_1.jpg" alt="2 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">২ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳২</div>
+                            <input type="number" class="currency-input" id="note-2" value="0" min="0" aria-label="2 Taka Note Quantity">
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- 1 Taka Note - NEW -->
+                    <div class="currency-item" style="position: relative;">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/tk1o.jpg" alt="1 Taka Note" class="currency-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">১ টাকার নোট</div>
+                            <div class="currency-value">মূল্য: ৳১</div>
+                            <input type="number" class="currency-input" id="note-1" value="0" min="0" aria-label="1 Taka Note Quantity">
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="section-title">
+                    <i class="fas fa-coins"></i>
+                    কয়েন সমূহ
+                </h2>
+                <div class="currency-grid">
+                    <!-- 5 Taka Coin -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/coin5tkr.gif" alt="5 Taka Coin" class="coin-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">৫ টাকার কয়েন</div>
+                            <div class="currency-value">মূল্য: ৳৫</div>
+                            <input type="number" class="currency-input" id="coin-5" value="0" min="0" aria-label="5 Taka Coin Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 2 Taka Coin -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/coin2tcr.gif" alt="2 Taka Coin" class="coin-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">২ টাকার কয়েন</div>
+                            <div class="currency-value">মূল্য: ৳২</div>
+                            <input type="number" class="currency-input" id="coin-2" value="0" min="0" aria-label="2 Taka Coin Quantity">
+                        </div>
+                    </div>
+                    
+                    <!-- 1 Taka Coin -->
+                    <div class="currency-item">
+                        <div class="currency-image">
+                            <img src="https://www.bb.org.bd/images/currmuse/coin1tbr.gif" alt="1 Taka Coin" class="coin-image">
+                        </div>
+                        <div class="currency-details">
+                            <div class="currency-name">১ টাকার কয়েন</div>
+                            <div class="currency-value">মূল্য: ৳১</div>
+                            <input type="number" class="currency-input" id="coin-1" value="0" min="0" aria-label="1 Taka Coin Quantity">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+           
+            
+            <div class="total-display">
+                <div class="total-label">মোট টাকার পরিমাণ</div>
+                <div class="total-amount" id="total-sum">০৳</div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-reset" id="reset-button">
+                    <i class="fas fa-redo"></i>
+                    রিসেট করুন
+                </button>
+            </div>
+             <div class="info-section">
+                <h2>বাংলাদেশী মুদ্রা ক্যালকুলেটর সম্পর্কে</h2>
+                <p>এই টুলটি ব্যবহার করে আপনি সহজেই আপনার কাছে থাকা বাংলাদেশী টাকার নোট এবং কয়েনের সংখ্যা হিসাব করে মোট টাকার পরিমাণ জানতে পারবেন।</p>
+                
+                <p>এই ক্যালকুলেটরটি বিশেষভাবে উপকারী:</p>
+                <ul class="feature-list">
+                    <li>দোকানদারদের দৈনিক আয় গণনার জন্য</li>
+                    <li>ব্যাংক কর্মকর্তাদের নগদ অর্থ গণনার জন্য</li>
+                    <li>ব্যক্তিগত সঞ্চয় গণনা করার জন্য</li>
+                    <li>শিক্ষার্থীদের গণিত চর্চার জন্য</li>
+                </ul>
+                
+                <p>সব নোট এবং কয়েনের পরিমাণ লিখুন এবং সাথে সাথে মোট টাকার পরিমাণ দেখুন।</p>
+                
+                
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>বাংলাদেশী মুদ্রা ক্যালকুলেটর | &copy; ২০২৫ সর্বস্বত্ব সংরক্ষিত | সাইটটি তৈরি করেছেন <a href="https://github.com/RidwanRidu" aria-label="Visit developer's GitHub profile">রিদওয়ান হোসেন</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const denominations = {
+                'note-1000': 1000,
+                'note-500': 500,
+                'note-200': 200,
+                'note-100': 100,
+                'note-50': 50,
+                'note-20': 20,
+                'note-10': 10,
+                'note-5': 5,
+                'note-2': 2,
+                'note-1': 1,
+                'coin-5': 5,
+                'coin-2': 2,
+                'coin-1': 1
+            };
+
+            const totalSumElement = document.getElementById('total-sum');
+            const resetButton = document.getElementById('reset-button');
+            const inputs = document.querySelectorAll('.currency-input');
+
+            // Function to format number with commas
+            const formatNumber = (num) => {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            };
+
+            // Calculate total amount
+            const calculateTotal = () => {
+                let total = 0;
+
+                for (const [id, value] of Object.entries(denominations)) {
+                    const inputElement = document.getElementById(id);
+                    const quantity = parseInt(inputElement.value) || 0;
+                    total += quantity * value;
+                }
+
+                // Format and display total with animation
+                totalSumElement.textContent = `${formatNumber(total)}৳`;
+                totalSumElement.classList.add('animate-total');
+                setTimeout(() => {
+                    totalSumElement.classList.remove('animate-total');
+                }, 500);
+                
+                // Update document title with total
+                document.title = `মোট: ${formatNumber(total)}৳ | বাংলাদেশী মুদ্রা ক্যালকুলেটর`;
+            };
+
+            // Reset all inputs
+            const resetAll = () => {
+                inputs.forEach(input => {
+                    input.value = '0';
+                });
+                totalSumElement.textContent = '০৳';
+                document.title = 'বাংলাদেশী মুদ্রা ক্যালকুলেটর | সহজে টাকা গণনা করুন';
+            };
+
+            // Add event listeners to all input fields for automatic calculation
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    // Ensure value is not negative
+                    if (parseInt(input.value) < 0) {
+                        input.value = '0';
+                    }
+                    calculateTotal();
+                });
+                
+                // Add focus effect
+                input.addEventListener('focus', (e) => {
+                    e.target.select();
+                });
+            });
+
+            // Add event listener to reset button
+            resetButton.addEventListener('click', resetAll);
+            
+            // Initial calculation
+            calculateTotal();
+        });
+    </script>
+</body>
+</html>
