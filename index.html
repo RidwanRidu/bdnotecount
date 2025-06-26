@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -178,6 +179,15 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(225, 23, 23, 0.4);
         }
+        .btn-print {
+            background: linear-gradient(135deg, #2196F3 0%, #0b7dda 100%);
+            color: white;
+            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+        }
+        .btn-print:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4);
+        }
         .footer {
             text-align: center;
             padding: 20px;
@@ -298,6 +308,76 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+        
+        /* Print styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .print-receipt, .print-receipt * {
+                visibility: visible;
+            }
+            .print-receipt {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 20px;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+        .print-receipt {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #006A4E;
+        }
+        .receipt-title {
+            color: #006A4E;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .receipt-date {
+            color: #666;
+            font-size: 1rem;
+        }
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .receipt-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #006A4E;
+        }
+        .receipt-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-style: italic;
+        }
+        .receipt-logo {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #006A4E;
+            font-size: 2.5rem;
         }
     </style>
 </head>
@@ -485,8 +565,6 @@
                 </div>
             </section>
             
-           
-            
             <div class="total-display">
                 <div class="total-label">মোট টাকার পরিমাণ</div>
                 <div class="total-amount" id="total-sum">০৳</div>
@@ -497,8 +575,36 @@
                     <i class="fas fa-redo"></i>
                     রিসেট করুন
                 </button>
+                <button class="btn btn-print" id="print-button">
+                    <i class="fas fa-print"></i>
+                    প্রিন্ট করুন
+                </button>
             </div>
-             <div class="info-section">
+            
+            <div class="print-receipt" id="print-receipt">
+                <div class="receipt-logo">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="receipt-header">
+                    <div class="receipt-title">টাকার রশিদ</div>
+                    <div class="receipt-date" id="receipt-date"></div>
+                </div>
+                
+                <div id="receipt-items">
+                    <!-- Items will be added dynamically -->
+                </div>
+                
+                <div class="receipt-total">
+                    <div>সর্বমোট:</div>
+                    <div id="receipt-total-amount">০৳</div>
+                </div>
+                
+                <div class="receipt-footer">
+                    ধন্যবাদ, বাংলাদেশী মূদ্রা ক্যালকুলেটর<br>Developed By Ridwan Hossain
+                </div>
+            </div>
+            
+            <div class="info-section">
                 <h2>বাংলাদেশী মুদ্রা ক্যালকুলেটর সম্পর্কে</h2>
                 <p>এই টুলটি ব্যবহার করে আপনি সহজেই আপনার কাছে থাকা বাংলাদেশী টাকার নোট এবং কয়েনের সংখ্যা হিসাব করে মোট টাকার পরিমাণ জানতে পারবেন।</p>
                 
@@ -512,7 +618,7 @@
                 
                 <p>সব নোট এবং কয়েনের পরিমাণ লিখুন এবং সাথে সাথে মোট টাকার পরিমাণ দেখুন।</p>
                 
-                
+               
             </div>
         </main>
         
@@ -524,38 +630,56 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const denominations = {
-                'note-1000': 1000,
-                'note-500': 500,
-                'note-200': 200,
-                'note-100': 100,
-                'note-50': 50,
-                'note-20': 20,
-                'note-10': 10,
-                'note-5': 5,
-                'note-2': 2,
-                'note-1': 1,
-                'coin-5': 5,
-                'coin-2': 2,
-                'coin-1': 1
+                'note-1000': { value: 1000, name: '১,০০০ টাকার নোট' },
+                'note-500': { value: 500, name: '৫০০ টাকার নোট' },
+                'note-200': { value: 200, name: '২০০ টাকার নোট' },
+                'note-100': { value: 100, name: '১০০ টাকার নোট' },
+                'note-50': { value: 50, name: '৫০ টাকার নোট' },
+                'note-20': { value: 20, name: '২০ টাকার নোট' },
+                'note-10': { value: 10, name: '১০ টাকার নোট' },
+                'note-5': { value: 5, name: '৫ টাকার নোট' },
+                'note-2': { value: 2, name: '২ টাকার নোট' },
+                'note-1': { value: 1, name: '১ টাকার নোট' },
+                'coin-5': { value: 5, name: '৫ টাকার কয়েন' },
+                'coin-2': { value: 2, name: '২ টাকার কয়েন' },
+                'coin-1': { value: 1, name: '১ টাকার কয়েন' }
             };
 
             const totalSumElement = document.getElementById('total-sum');
             const resetButton = document.getElementById('reset-button');
+            const printButton = document.getElementById('print-button');
             const inputs = document.querySelectorAll('.currency-input');
+            const receiptItemsContainer = document.getElementById('receipt-items');
+            const receiptTotalElement = document.getElementById('receipt-total-amount');
+            const receiptDateElement = document.getElementById('receipt-date');
+            const printReceiptElement = document.getElementById('print-receipt');
 
             // Function to format number with commas
             const formatNumber = (num) => {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             };
 
+            // Format date for receipt
+            const formatDate = (date) => {
+                const options = { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                };
+                return date.toLocaleDateString('bn-BD', options);
+            };
+
             // Calculate total amount
             const calculateTotal = () => {
                 let total = 0;
 
-                for (const [id, value] of Object.entries(denominations)) {
+                for (const id in denominations) {
                     const inputElement = document.getElementById(id);
                     const quantity = parseInt(inputElement.value) || 0;
-                    total += quantity * value;
+                    total += quantity * denominations[id].value;
                 }
 
                 // Format and display total with animation
@@ -567,6 +691,56 @@
                 
                 // Update document title with total
                 document.title = `মোট: ${formatNumber(total)}৳ | বাংলাদেশী মুদ্রা ক্যালকুলেটর`;
+                
+                return total;
+            };
+
+            // Generate receipt content
+            const generateReceipt = () => {
+                const now = new Date();
+                receiptDateElement.textContent = formatDate(now);
+                
+                let receiptHTML = '';
+                let grandTotal = 0;
+                
+                for (const id in denominations) {
+                    const inputElement = document.getElementById(id);
+                    const quantity = parseInt(inputElement.value) || 0;
+                    
+                    if (quantity > 0) {
+                        const amount = quantity * denominations[id].value;
+                        grandTotal += amount;
+                        
+                        receiptHTML += `
+                            <div class="receipt-item">
+                                <div>${denominations[id].name} x ${quantity}</div>
+                                <div>${formatNumber(amount)}৳</div>
+                            </div>
+                        `;
+                    }
+                }
+                
+                // If no items, show a message
+                if (receiptHTML === '') {
+                    receiptHTML = '<div class="receipt-item" style="justify-content:center;color:#999;">কোনো টাকা যোগ করা হয়নি</div>';
+                }
+                
+                receiptItemsContainer.innerHTML = receiptHTML;
+                receiptTotalElement.textContent = `${formatNumber(grandTotal)}৳`;
+                
+                return grandTotal;
+            };
+
+            // Show and print receipt
+            const printReceipt = () => {
+                generateReceipt();
+                printReceiptElement.style.display = 'block';
+                
+                // Trigger print after a small delay
+                setTimeout(() => {
+                    window.print();
+                    printReceiptElement.style.display = 'none';
+                }, 100);
             };
 
             // Reset all inputs
@@ -596,6 +770,9 @@
 
             // Add event listener to reset button
             resetButton.addEventListener('click', resetAll);
+            
+            // Add event listener to print button
+            printButton.addEventListener('click', printReceipt);
             
             // Initial calculation
             calculateTotal();
