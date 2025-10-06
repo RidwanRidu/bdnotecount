@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>বাংলাদেশী মুদ্রা ক্যালকুলেটর | সহজে টাকা গণনা করুন</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.maateen.me/kalpurush/font.css');
-        @import url('https://fonts.maateen.me/solaiman-lipi/font.css');
-
+  
+		@font-face {
+            font-family: 'BCC Purno Regular';
+            src: url('BCC Purno Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
-            font-family: 'Kalpurush', 'SolaimanLipi', sans-serif;
+            font-family: 'BCC Purno Regular', sans-serif;
             background-color: #f8fafc;
         }
 
@@ -94,8 +95,8 @@
             }
         }
     </style>
-</head>
-<body class="min-h-screen">
+
+
 
     <!-- Floating Total Display -->
     <div class="fixed top-4 right-4 z-50 text-white rounded-xl shadow-2xl p-3 md:p-4 text-center print:hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);">
@@ -107,7 +108,7 @@
         <!-- Header -->
         <header class="text-center mb-10">
             <h1 class="text-3xl md:text-4xl font-bold text-green-800 mb-2">
-                <i class="fas fa-calculator mr-2"></i>
+                <i class="fas fa-calculator mr-2" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                 বাংলাদেশী মুদ্রা ক্যালকুলেটর
             </h1>
             <p class="text-gray-600 max-w-2xl mx-auto">
@@ -122,7 +123,7 @@
                 <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                     <div class="note-bg py-3 px-6">
                         <h2 class="text-xl font-semibold text-white flex items-center">
-                            <i class="fas fa-money-bill-wave mr-2"></i>
+                            <i class="fas fa-money-bill-wave mr-2" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                             নোট সমূহ
                         </h2>
                     </div>
@@ -139,7 +140,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-1000" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-1000" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-1000" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 500 Taka Note -->
@@ -153,7 +154,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-500" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-500" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-500" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 200 Taka Note -->
@@ -167,7 +168,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-200" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-200" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-200" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 100 Taka Note -->
@@ -181,7 +182,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-100" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-100" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-100" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 50 Taka Note -->
@@ -195,7 +196,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-50" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-50" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-50" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 20 Taka Note -->
@@ -209,7 +210,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-20" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-20" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-20" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 10 Taka Note -->
@@ -223,7 +224,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-10" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-10" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-10" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 5 Taka Note -->
@@ -237,7 +238,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-5" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-5" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-5" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 2 Taka Note -->
@@ -251,7 +252,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-2" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-2" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-2" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 1 Taka Note -->
@@ -265,7 +266,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="note-1" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="note-1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0">
+                                    <input type="number" id="note-1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                         </div>
@@ -276,7 +277,7 @@
                 <div class="bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="coin-bg py-3 px-6">
                         <h2 class="text-xl font-semibold text-white flex items-center">
-                            <i class="fas fa-coins mr-2"></i>
+                            <i class="fas fa-coins mr-2" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                             কয়েন সমূহ
                         </h2>
                     </div>
@@ -293,7 +294,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="coin-5" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="coin-5" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="0">
+                                    <input type="number" id="coin-5" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 2 Taka Coin -->
@@ -307,7 +308,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="coin-2" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="coin-2" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="0">
+                                    <input type="number" id="coin-2" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                             <!-- 1 Taka Coin -->
@@ -321,7 +322,7 @@
                                 </div>
                                 <div class="mt-auto">
                                     <label for="coin-1" class="block text-sm font-medium text-gray-700 mb-1">সংখ্যা</label>
-                                    <input type="number" id="coin-1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="0">
+                                    <input type="number" id="coin-1" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-600" placeholder="0" style="font-family: Arial, Bangla233, sans-serif;">
                                 </div>
                             </div>
                         </div>
@@ -335,17 +336,17 @@
                 <div class="total-display rounded-xl shadow-lg text-white mb-6">
                     <div class="p-6">
                         <h2 class="text-xl font-semibold mb-4 flex items-center">
-                            <i class="fas fa-wallet mr-2"></i>
+                            <i class="fas fa-wallet mr-2" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                             মোট টাকার পরিমাণ
                         </h2>
                         <div class="text-4xl font-bold text-center py-6" id="total-amount">০৳</div>
                         <div class="flex justify-between gap-4">
-                            <button id="reset-btn" class="reset-btn text-white font-medium py-2 px-4 rounded-lg flex-1 flex items-center justify-center">
-                                <i class="fas fa-redo mr-2"></i>
+                            <button id="reset-btn" class="reset-btn text-white font-medium py-2 px-4 rounded-lg flex-1 flex items-center justify-center" style="font-family: Arial, Bangla233, sans-serif;">
+                                <i class="fas fa-redo mr-2" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                                 রিসেট করুন
                             </button>
-                            <button id="print-btn" class="print-receipt text-white font-medium py-2 px-4 rounded-lg flex-1 flex items-center justify-center">
-                                <i class="fas fa-print mr-2"></i>
+                            <button id="print-btn" class="print-receipt text-white font-medium py-2 px-4 rounded-lg flex-1 flex items-center justify-center" style="font-family: Arial, Bangla233, sans-serif;">
+                                <i class="fas fa-print mr-2" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                                 প্রিন্ট করুন
                             </button>
                         </div>
@@ -355,7 +356,7 @@
                 <!-- Receipt -->
                 <div id="receipt" class="bg-white rounded-xl shadow-md p-6">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2 flex items-center">
-                        <i class="fas fa-receipt mr-2"></i>
+                        <i class="fas fa-receipt mr-2" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                         টাকার রশিদ
                     </h2>
                     <div id="receipt-items" class="mb-4">
@@ -369,7 +370,7 @@
                         </div>
                     </div>
                     <div class="mt-6 text-center text-sm text-gray-500">
-                        <i class="fas fa-heart text-red-500 mr-1"></i>
+                        <i class="fas fa-heart text-red-500 mr-1" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                         <span id="appreciation-message">ধন্যবাদ, বাংলাদেশী মুদ্রা ক্যালকুলেটর</span>
                     </div>
                 </div>
@@ -377,7 +378,7 @@
                 <!-- About Section -->
                 <div class="bg-white rounded-xl shadow-md p-6 mt-6">
                     <h2 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
-                        <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+                        <i class="fas fa-info-circle mr-2 text-blue-500" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                         বাংলাদেশী মুদ্রা ক্যালকুলেটর সম্পর্কে
                     </h2>
                     <p class="text-gray-600 mb-4">
@@ -385,19 +386,19 @@
                     </p>
                     <div class="space-y-2">
                         <p class="flex items-start text-gray-600">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                             <span>দোকানদারদের দৈনিক আয় গণনার জন্য</span>
                         </p>
                         <p class="flex items-start text-gray-600">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                             <span>ব্যাংক কর্মকর্তাদের নগদ অর্থ গণনার জন্য</span>
                         </p>
                         <p class="flex items-start text-gray-600">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                             <span>ব্যক্তিগত সঞ্চয় গণনা করার জন্য</span>
                         </p>
                         <p class="flex items-start text-gray-600">
-                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1" style="font-family: &quot;Font Awesome 6 Free&quot;, Bangla233, sans-serif;"></i>
                             <span>শিক্ষার্থীদের গণিত চর্চার জন্য</span>
                         </p>
                     </div>
@@ -537,10 +538,14 @@
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>টাকার রশিদ</title>
                         <style>
-                            @import url('https://fonts.maateen.me/kalpurush/font.css');
-                            @import url('https://fonts.maateen.me/solaiman-lipi/font.css');
-                            body {
-                                font-family: 'Kalpurush', 'SolaimanLipi', sans-serif;
+                            @font-face {
+            				font-family: 'BCC Purno Regular';
+            				src: url('BCC Purno Regular.ttf') format('truetype');
+            				font-weight: normal;
+            				font-style: normal;
+        					}
+        					body {
+            					font-family: 'Purno', sans-serif;
                                 margin: 20px;
                                 color: #333;
                             }
